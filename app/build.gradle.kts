@@ -27,7 +27,7 @@ android {
     
     signingConfigs {
         create("release") {
-            storeFile = file("${rootProject.projectDir}/keystore/music_release.p12")
+            storeFile = file("${rootProject.projectDir}/keystore/key.p12")
             storePassword = System.getenv("KEYSTORE_PASS") ?: localProps?.getProperty("keystore.storePass")
             keyAlias = System.getenv("KEY_ALIAS") ?: localProps?.getProperty("keystore.alias")
             keyPassword = System.getenv("KEY_PASS") ?: localProps?.getProperty("keystore.keyPass")
