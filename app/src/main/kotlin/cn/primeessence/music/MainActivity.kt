@@ -40,8 +40,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.safmusic.model.Song
-import com.example.safmusic.playback.PlaybackService
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

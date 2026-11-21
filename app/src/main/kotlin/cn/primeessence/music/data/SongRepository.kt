@@ -23,7 +23,7 @@ class SongRepository(private val context: Context) {
                     uri = node.uri,
                     name = name,
                     baseName = name.substringBeforeLast('.', name),
-                    parentNames = parentNames.toSet(),
+                    parentNames = parentNames.toList(),
                 )
             }
         }
