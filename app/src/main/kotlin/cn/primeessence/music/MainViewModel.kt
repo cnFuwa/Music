@@ -101,7 +101,7 @@ class MainViewModel @Inject constructor(
         lyricJob?.cancel()
         lyricJob = viewModelScope.launch {
             var lastKey: String? = null
-            var lines: List<LrcParser.LyricLine> = emptyList()
+            var lines: List<LyricLine> = emptyList()
             while (true) {
                 player.tick()
                 val song = player.currentSong()
