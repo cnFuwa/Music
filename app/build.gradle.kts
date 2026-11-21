@@ -1,3 +1,11 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+val propsFile = rootProject.file("keystore.properties")
+val localProps = if (propsFile.exists()) {
+    Properties().apply { load(FileInputStream(propsFile)) }
+} else null
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -15,6 +23,15 @@ android {
         targetSdk { version = release(36) }
         versionCode = 1
         versionName = "1.0.0"
+    }
+    
+    signingConfigs {
+        create("release") {
+            storeFile = file("${rootProject.projectDir}/keystore/music_release.p12")
+            storePassword = System.getenv("KEYSTORE_PASS") ?: localProps?.getProperty("keystore.storePass")
+            keyAlias = System.getenv("KEY_ALIAS") ?: localProps?.getProperty("keystore.alias")
+            keyPassword = System.getenv("KEY_PASS") ?: localProps?.getProperty("keystore.keyPass")
+        }
     }
 
     buildTypes {
