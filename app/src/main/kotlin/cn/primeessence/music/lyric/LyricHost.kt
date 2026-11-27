@@ -6,9 +6,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DesktopLyricHost @Inject constructor(@ApplicationContext private val context: Context) {
+class LyricHost @Inject constructor(@ApplicationContext private val context: Context) {
 
-    private val view by lazy { DesktopLyricView(context) }
+    private val view by lazy { LyricView(context) }
 
     fun show() = view.show()
     fun hide() = view.hide()

@@ -24,7 +24,7 @@ object PlayerModule {
                     .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
                     .setUsage(C.USAGE_MEDIA)
                     .build(),
-                true,
+                true
             )
             .setHandleAudioBecomingNoisy(true)
             .build()

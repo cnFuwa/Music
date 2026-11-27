@@ -9,7 +9,7 @@ data class Song(
     val uri: Uri,
     val name: String,
     val baseName: String,
-    val parentNames: List<String> = emptyList(),
+    val parentNames: List<String> = emptyList()
 ) : Parcelable {
     val title: String get() = baseName
 }

@@ -1,3 +1,4 @@
+//App Module
 package cn.primeessence.music
 
 import android.content.Context
@@ -14,6 +15,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSongRepository(@ApplicationContext context: Context): SongRepository =
-        SongRepository(context)
+    fun provideSongRepo(@ApplicationContext context: Context): SongRepo =
+        SongRepo(context)
 }

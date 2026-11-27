@@ -1,10 +1,14 @@
+//Lyric Parser
 package cn.primeessence.music
 
 import kotlin.math.max
 
-data class LyricLine(val timeMs: Long, val text: String)
+data class LyricLine(
+    val timeMs: Long,
+    val text: String
+)
 
-object LrcParser {
+object LyricParser {
     private val lineRegex = Regex("""\[(\d{1,3}):(\d{1,2})(?:[.:](\d{1,3}))?]""")
 
     fun parse(content: String): List<LyricLine> {

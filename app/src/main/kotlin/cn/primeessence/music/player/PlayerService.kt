@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class PlaybackService : MediaSessionService() {
+class PlayerService : MediaSessionService() {
 
     @Inject lateinit var player: ExoPlayer
     private var session: MediaSession? = null

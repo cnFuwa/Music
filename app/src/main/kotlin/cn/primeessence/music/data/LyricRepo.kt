@@ -1,3 +1,4 @@
+//Lyric Repo
 package cn.primeessence.music
 
 import android.net.Uri
@@ -7,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LyricRepository @Inject constructor(private val songRepo: SongRepository) {
+class LyricRepo @Inject constructor(private val songRepo: SongRepository) {
 
     private val cache = mutableMapOf<String, List<LyricLine>>()
     private val mutex = Mutex()

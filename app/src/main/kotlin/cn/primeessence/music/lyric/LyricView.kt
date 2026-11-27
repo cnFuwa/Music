@@ -7,14 +7,13 @@ import android.view.Gravity
 import android.view.WindowManager
 import android.widget.TextView
 
-
-class DesktopLyricView(context: Context) {
+class LyricView(context: Context) {
 
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
     private val textView = TextView(context).apply {
         setTextColor(Color.WHITE)
-        textSize = 18f
+        textSize = 24f
         setShadowLayer(4f, 0f, 0f, Color.BLACK)
         gravity = Gravity.CENTER
         setPadding(24, 12, 24, 12)
@@ -29,7 +28,7 @@ class DesktopLyricView(context: Context) {
         PixelFormat.TRANSLUCENT,
     ).apply {
         gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
-        y = 120
+        y = 780
     }
 
     var showing: Boolean = false

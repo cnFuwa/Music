@@ -1,3 +1,4 @@
+//Song Repo
 package cn.primeessence.music
 
 import android.content.Context
@@ -6,7 +7,7 @@ import androidx.documentfile.provider.DocumentFile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class SongRepository(private val context: Context) {
+class SongRepo(private val context: Context) {
 
     companion object {
         private val AUDIO_EXTS = setOf("mp3", "flac", "m4a", "aac", "ogg", "wma", "wav", "opus")
