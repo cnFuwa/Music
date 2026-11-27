@@ -13,10 +13,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-// 说明：isActive 是 CoroutineScope 的扩展属性，不是变量，无需初始化；
-// launch {} 内可直接访问，下面写成 this.isActive 只是更直观，二者等价
 import kotlinx.coroutines.isActive
-// 修复：新增导入，用于提交结果前确认协程未被取消
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -160,7 +157,7 @@ class MusicViewModel @Inject constructor(
                 }
                 val text = when {
                     song == null -> ""
-                    else -> LrcParser.indexAt(lines, player.position.value)
+                    else -> LyricParser.indexAt(lines, player.position.value)
                         .let { lines.getOrNull(it)?.text } ?: song.title
                 }
                 if (text != lastText) {
