@@ -8,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LyricRepo @Inject constructor(private val songRepo: SongRepository) {
+class LyricRepo @Inject constructor(private val songRepo: SongRepo) {
 
     private val cache = mutableMapOf<String, List<LyricLine>>()
     private val mutex = Mutex()
