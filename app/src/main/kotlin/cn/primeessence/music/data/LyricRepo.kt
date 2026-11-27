@@ -20,7 +20,7 @@ class LyricRepo @Inject constructor(private val songRepo: SongRepo) {
         return mutex.withLock {
             cache.getOrPut(key) {
                 val raw = songRepo.findLyric(song, uri) ?: return@getOrPut emptyList()
-                LrcParser.parse(raw)
+                LyricParser.parse(raw)
             }
         }
     }
