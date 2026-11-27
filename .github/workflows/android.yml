@@ -38,7 +38,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v5
         with:
-          name: garden-apk
+          name: music-apk
           path: app/build/outputs/apk/release/*.apk
           if: success() || failure()
 
