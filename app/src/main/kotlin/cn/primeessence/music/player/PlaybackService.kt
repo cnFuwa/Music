@@ -1,6 +1,8 @@
+// Playback Service
 package cn.primeessence.music
 
 import android.content.Intent
+import android.os.Build
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
@@ -8,20 +10,31 @@ import androidx.media3.session.MediaSessionService
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class PlaybackService : MediaSessionService() {
 
     @Inject lateinit var player: ExoPlayer
     private var session: MediaSession? = null
 
+    private val mainHandler = android.os.Handler(android.os.Looper.getMainLooper())
+
     private val modeGuard = object : Player.Listener {
         override fun onRepeatModeChanged(repeatMode: Int) {
-            if (player.repeatMode != Player.REPEAT_MODE_ALL) player.repeatMode = Player.REPEAT_MODE_ALL
+            if (repeatMode != Player.REPEAT_MODE_ALL) {
+                mainHandler.post {
+                    if (player.repeatMode != Player.REPEAT_MODE_ALL) {
+                        player.repeatMode = Player.REPEAT_MODE_ALL
+                    }
+                }
+            }
         }
 
         override fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {
-            if (player.shuffleModeEnabled) player.shuffleModeEnabled = false
+            if (shuffleModeEnabled) {
+                mainHandler.post {
+                    if (player.shuffleModeEnabled) player.shuffleModeEnabled = false
+                }
+            }
         }
     }
 
@@ -38,13 +51,16 @@ class PlaybackService : MediaSessionService() {
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
-        if (!player.playWhenReady || player.mediaItemCount == 0) stopSelf()
+        if (!player.playWhenReady || player.mediaItemCount == 0) {
+            stopSelf()
+        }
     }
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? = session
 
     override fun onDestroy() {
         player.removeListener(modeGuard)
+        mainHandler.removeCallbacksAndMessages(null) // 修复：清理投递，避免销毁后仍回调
         session?.release()
         session = null
         super.onDestroy()
