@@ -1,9 +1,8 @@
 package cn.primeessence.music
 
+import android.content.ComponentName
 import android.content.Context
-import androidx.media3.common.AudioAttributes
-import androidx.media3.common.C
-import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.session.SessionToken
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,15 +16,6 @@ object PlayerModule {
 
     @Provides
     @Singleton
-    fun provideExoPlayer(@ApplicationContext context: Context): ExoPlayer =
-        ExoPlayer.Builder(context)
-            .setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                    .setUsage(C.USAGE_MEDIA)
-                    .build(),
-                true
-            )
-            .setHandleAudioBecomingNoisy(true)
-            .build()
+    fun provideSessionToken(@ApplicationContext context: Context): SessionToken =
+        SessionToken(context, ComponentName(context, PlaybackService::class.java))
 }
