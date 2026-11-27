@@ -25,7 +25,7 @@
         </activity>
 
         <service
-            android:name=".playback.PlaybackService"
+            android:name=".PlaybackService"
             android:exported="true"
             android:foregroundServiceType="mediaPlayback">
             <intent-filter>

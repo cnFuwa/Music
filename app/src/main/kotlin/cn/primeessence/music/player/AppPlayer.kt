@@ -9,7 +9,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PlayerController @Inject constructor(private val player: ExoPlayer) {
+class AppPlayer @Inject constructor(private val player: ExoPlayer) {
 
     val songs = mutableListOf<Song>()
 
@@ -40,7 +40,8 @@ class PlayerController @Inject constructor(private val player: ExoPlayer) {
     }
 
     fun playList(songs: List<Song>, index: Int) {
-        this.songs.clear(); this.songs.addAll(songs)
+        this.songs.clear();
+        this.songs.addAll(songs)
         val items = songs.mapIndexed { i, s ->
             s.toMediaItem().buildUpon().setMediaId(i.toString()).build()
         }
